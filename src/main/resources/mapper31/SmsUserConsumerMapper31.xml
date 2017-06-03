@@ -14,18 +14,12 @@
 
         insert into sms_user_consume
         (
-        `id`,`pwd`, `dpwd`,`company`, `phone`, `tel`, `mail`, `linkman`,
-        `address`, `sales`, `discount`, `price`, `send`, `send_ok`, `time`, `add_uid`,`stat`,
-        `sms`,`priority`,`logintime`,`loginip`,`qq`,`remark`,`userkind`,`kefu`,`username`,`submittype`,`parentId`,
-        `hyType`,`customer_id`,`usertype`,`paytype`
+        `id`,`uid`,`send`,`unsend`,`date`,`utype`
         )
         values
         <foreach collection="list" item="item" index="index" separator=",">
         (
-        #{item.id},#{item.pwd},#{item.dpwd},#{item.company},#{item.phone},#{item.tel},#{item.mail},#{item.linkman},#{item.address},#{item.sales},
-        #{item.discount},#{item.price},#{item.send},#{item.sendOk},#{item.time},#{item.addUid},#{item.stat},#{item.sms},#{item.priority},
-        #{item.logintime},#{item.loginip},#{item.qq},#{item.remark},#{item.userkind},#{item.kefu},#{item.username},#{item.submittype},
-        #{item.parentId},#{item.hyType},#{item.customerId},#{item.usertype},#{item.paytype}
+        #{item.id},#{item.uid},#{item.send},#{item.unsend},#{item.date},#{item.utype}
         )
         </foreach>
     </insert>

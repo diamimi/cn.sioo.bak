@@ -4,13 +4,15 @@ import cn.sioo.mapper21.SmsUserConsumeMapper21;
 import cn.sioo.mapper31.SmsUserConsumeMapper31;
 import cn.sioo.pojo.SmsUserConsume;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by morrigan on 2017/6/3.
  */
-public class SmsUserConsumerService implements BaseService<SmsUserConsume> {
+@Service
+public class SmsUserConsumeService implements BaseService<SmsUserConsume> {
 
     @Autowired
     private SmsUserConsumeMapper31 smsUserConsumerMapper31;

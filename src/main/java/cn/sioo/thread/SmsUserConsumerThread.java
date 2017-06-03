@@ -1,16 +1,16 @@
 package cn.sioo.thread;
 
 import cn.sioo.pojo.SmsUserConsume;
-import cn.sioo.service.SmsUserConsumerService;
+import cn.sioo.service.SmsUserConsumeService;
 
 import java.util.List;
 
 /**
  * Created by morrigan on 2017/6/3.
  */
-public class SmsUserConsumerThread extends BaseThread<SmsUserConsumerService> implements Runnable{
+public class SmsUserConsumerThread extends BaseThread<SmsUserConsumeService> implements Runnable{
 
-    public SmsUserConsumerThread(SmsUserConsumerService t) {
+    public SmsUserConsumerThread(SmsUserConsumeService t) {
         super(t);
     }
 

@@ -1,5 +1,7 @@
 package cn.sioo.mapper21;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -18,9 +20,9 @@ public interface BaseMapper21<T> {
     /**
      * 查询21数据
      *
-     * @param count1
+     * @param index
      * @param size
      * @return
      */
-    List<T> findList(int count1, int size);
+    List<T> findList(@Param("index") int index, @Param("size") int size);
 }
