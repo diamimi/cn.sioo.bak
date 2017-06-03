@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.sioo.mapper31.SmsUserMapper31">
+    <delete id="truncate">
+      truncate sms_user;
+  </delete>
+
+    <select id="findCount31" resultType="java.lang.Integer">
+        SELECT count(0) from sms_user
+    </select>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+
+        insert into sms_user
+        (
+        `id`,`pwd`, `dpwd`,`company`, `phone`, `tel`, `mail`, `linkman`,
+        `address`, `sales`, `discount`, `price`, `send`, `send_ok`, `time`, `add_uid`,`stat`,
+        `sms`,`priority`,`logintime`,`loginip`,`qq`,`remark`,`userkind`,`kefu`,`username`,`submittype`,`parentId`,
+        `hyType`,`customer_id`,`usertype`,`paytype`
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+        #{item.id},#{item.pwd},#{item.dpwd},#{item.company},#{item.phone},#{item.tel},#{item.mail},#{item.linkman},#{item.address},#{item.sales},
+        #{item.discount},#{item.price},#{item.send},#{item.sendOk},#{item.time},#{item.addUid},#{item.stat},#{item.sms},#{item.priority},
+        #{item.logintime},#{item.loginip},#{item.qq},#{item.remark},#{item.userkind},#{item.kefu},#{item.username},#{item.submittype},
+        #{item.parentId},#{item.hyType},#{item.customerId},#{item.usertype},#{item.paytype}
+        )
+        </foreach>
+    </insert>
+
+</mapper>

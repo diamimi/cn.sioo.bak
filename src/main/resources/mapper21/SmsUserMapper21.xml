@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.sioo.mapper21.SmsUserMapper21">
+
+    <select id="findCount21" resultType="java.lang.Integer">
+        SELECT count(0) from sms_user
+    </select>
+
+    <select id="findList" resultType="cn.sioo.pojo.SmsUser">
+        SELECT * from sms_user ORDER BY time limit #{index},#{size}
+    </select>
+
+</mapper>
