@@ -1,7 +1,7 @@
 package cn.sioo.service;
 
-import cn.sioo.mapper21.SmsUserConsumerMapper21;
-import cn.sioo.mapper31.SmsUserConsumerMapper31;
+import cn.sioo.mapper21.SmsUserConsumeMapper21;
+import cn.sioo.mapper31.SmsUserConsumeMapper31;
 import cn.sioo.pojo.SmsUserConsume;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,10 +13,10 @@ import java.util.List;
 public class SmsUserConsumerService implements BaseService<SmsUserConsume> {
 
     @Autowired
-    private SmsUserConsumerMapper31 smsUserConsumerMapper31;
+    private SmsUserConsumeMapper31 smsUserConsumerMapper31;
 
     @Autowired
-    private SmsUserConsumerMapper21 smsUserConsumerMapper21;
+    private SmsUserConsumeMapper21 smsUserConsumerMapper21;
 
     @Override
     public void insertBatch(List<SmsUserConsume> t) {
