@@ -1,8 +1,9 @@
 package cn.sioo.bak;
 
+import cn.sioo.service.BaseService;
 import cn.sioo.service.SmsUserConsumeService;
 import cn.sioo.service.SmsUserService;
-import cn.sioo.thread.SmsUserConsumerThread;
+import cn.sioo.thread.BaseThread;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,8 +25,8 @@ public class BakMain {
 
         ScheduledExecutorService service = Executors.newScheduledThreadPool(5);
         // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-       // service.scheduleAtFixedRate(new SmsUserThread(smsUserService), 1, 120, TimeUnit.SECONDS);
-        service.scheduleAtFixedRate(new SmsUserConsumerThread(smsUserConsumeService), 1, 120, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new BaseThread<SmsUserService>(smsUserService), 1, 120, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new BaseThread<SmsUserConsumeService>(smsUserConsumeService), 1, 120, TimeUnit.SECONDS);
     }
 
 }
