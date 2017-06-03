@@ -1,5 +1,6 @@
 package cn.sioo.bak;
 
+import cn.sioo.pojo.SmsUser;
 import cn.sioo.pojo.SmsUserConsume;
 import cn.sioo.service.SmsUserConsumeService;
 import cn.sioo.service.SmsUserService;
@@ -25,7 +26,7 @@ public class BakMain {
 
         ScheduledExecutorService service = Executors.newScheduledThreadPool(5);
         // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-      //  service.scheduleAtFixedRate(new BaseThread<SmsUser>(smsUserService), 1, 20, TimeUnit.MINUTES);
+        service.scheduleAtFixedRate(new BaseThread<SmsUser>(smsUserService), 1, 20, TimeUnit.MINUTES);
         service.scheduleAtFixedRate(new BaseThread<SmsUserConsume>(smsUserConsumeService), 1, 20, TimeUnit.MINUTES);
     }
 
