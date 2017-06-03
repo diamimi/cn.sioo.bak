@@ -26,7 +26,7 @@ public  class BaseThread<T> implements Runnable{
         long begin=System.currentTimeMillis();
         int count31=t.findCount31();
         int count21=t.findCount21();
-        int size=300;
+        int size=2000;
         int part=count21/size;
         for(int i=0;i<=part;i++){
             List<T> list = t.findList(count31, size);
