@@ -25,8 +25,8 @@ public class BakMain {
 
         ScheduledExecutorService service = Executors.newScheduledThreadPool(5);
         // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-        service.scheduleAtFixedRate(new BaseThread<SmsUserService>(smsUserService), 1, 120, TimeUnit.SECONDS);
-        service.scheduleAtFixedRate(new BaseThread<SmsUserConsumeService>(smsUserConsumeService), 1, 120, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new BaseThread<SmsUserService>(smsUserService), 1, 20, TimeUnit.MINUTES);
+        service.scheduleAtFixedRate(new BaseThread<SmsUserConsumeService>(smsUserConsumeService), 1, 20, TimeUnit.MINUTES);
     }
 
 }
