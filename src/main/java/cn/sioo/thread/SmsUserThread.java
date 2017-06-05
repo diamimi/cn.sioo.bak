@@ -25,16 +25,19 @@ public class SmsUserThread extends BaseThread<SmsUser> implements Runnable {
             int part=count21/size;
             int index=count31/size+1;
             for(int i=0;i<=part;i++){
-                List<SmsUser> list = baseService.findList(SmsUser.class,index, size);
-                if(list.size()>0){
-                    baseService.insertList(list);
-                }else {
-                    break;
+                if(count31<count21){
+                    List<SmsUser> list = baseService.findList(SmsUser.class,index, size);
+                    if(list.size()>0){
+                        baseService.insertList(list);
+                    }else {
+                        break;
+                    }
+                    count31=count31+1;
+                    index++;
                 }
-                count31=count31+1;
-                index++;
-            }
-            LOGGER.info("备份耗时:{},{}",(System.currentTimeMillis()-begin),"SmsUser");
+                LOGGER.info("备份耗时:{},{}",(System.currentTimeMillis()-begin),"SmsUser");
+                }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

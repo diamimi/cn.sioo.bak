@@ -11,15 +11,6 @@ import java.util.List;
  */
 public interface BaseMapper31<T> extends Mapper<T> {
 
-
-
-    /**
-     * 查询31数量
-     *
-     * @return
-     */
-    int findCount31();
-
     @InsertProvider(type = SpecialProvider.class, method = "dynamicSQL")
     int insertList(List<T> recordList);
 }

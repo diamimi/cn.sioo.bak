@@ -82,6 +82,7 @@ public abstract class BaseService<T extends BaseEntity> {
     public List<T> findList(Class<T> t,int index, int size) {
         Example example=new Example(t);
         example.setOrderByClause("id");
+
         PageHelper.startPage(index, size);
         List<T> ts = getMapper21().selectByExample(example);
         return ts;
