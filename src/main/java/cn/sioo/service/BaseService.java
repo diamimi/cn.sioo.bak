@@ -2,8 +2,11 @@ package cn.sioo.service;
 
 import cn.sioo.mapper21.BaseMapper21;
 import cn.sioo.mapper31.BaseMapper31;
+import cn.sioo.pojo.BaseEntity;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -11,13 +14,32 @@ import java.util.List;
  * Created by morrigan on 2017/6/3.
  */
 @Service
-public class BaseService<T> {
+public abstract class BaseService<T extends BaseEntity> {
+
+
+    @Autowired
+    private BaseMapper31<T> baseMapper31;
 
     @Autowired
     private BaseMapper21<T> baseMapper21;
 
-    @Autowired
-    private BaseMapper31<T> baseMapper31;
+    /**
+     * 返回具体的Mapper
+     *
+     * @return
+     */
+    private BaseMapper31<T> getMapper31(){
+        return this.baseMapper31;
+    }
+
+    /**
+     * 返回具体的Mapper
+     *
+     * @return
+     */
+    private BaseMapper21<T> getMapper21(){
+        return this.baseMapper21;
+    }
 
 
     /**
@@ -25,17 +47,26 @@ public class BaseService<T> {
      *
      * @param t
      */
-    public void insertBatch(List<T> t) {
-        baseMapper31.insertBatch(t);
+    public void insertList(List<T> t) {
+        getMapper31().insertList(t);
     }
+
+
+
+    public int selectCount31(T t) {
+
+        return getMapper31().selectCount(t);
+    }
+
+
 
     /**
      * 查询31数量
      *
      * @return
      */
-    public int findCount31() {
-        return baseMapper31.findCount31();
+    public int selectCount21(T t) {
+        return getMapper21().selectCount(t);
     }
 
     /**
@@ -43,9 +74,9 @@ public class BaseService<T> {
      *
      * @return
      */
-    public int findCount21() {
+   /* public int findCount21() {
         return baseMapper21.findCount21();
-    }
+    }*/
 
     /**
      * 查询21数据
@@ -54,7 +85,13 @@ public class BaseService<T> {
      * @param size
      * @return
      */
-    public List<T> findList(int index, int size) {
-        return baseMapper21.findList(index, size);
+    public List<T> findList(T t,int index, int size) {
+        Example example=new Example(t.getClass());
+        example.setOrderByClause("time");
+        PageHelper.startPage(index, size);
+        List<T> ts = getMapper31().selectByExample(example);
+        return ts;
     }
+
+
 }

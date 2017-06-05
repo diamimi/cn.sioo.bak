@@ -1,18 +1,17 @@
 package cn.sioo.mapper31;
 
+import org.apache.ibatis.annotations.InsertProvider;
+import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.provider.SpecialProvider;
+
 import java.util.List;
 
 /**
- * Created by morrigan on 2017/6/3.
+ * Created by morrigan on 2017/6/5.
  */
-public interface BaseMapper31<T> {
+public interface BaseMapper31<T> extends Mapper<T> {
 
-    /**
-     * 插入31
-     *
-     * @param t
-     */
-    void insertBatch(List<T> t);
+
 
     /**
      * 查询31数量
@@ -21,5 +20,6 @@ public interface BaseMapper31<T> {
      */
     int findCount31();
 
-
+    @InsertProvider(type = SpecialProvider.class, method = "dynamicSQL")
+    int insertList(List<T> recordList);
 }

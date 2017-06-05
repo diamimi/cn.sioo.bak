@@ -19,10 +19,18 @@
     </bean>
 
 
+
     <!-- 定义Mapper接口扫描器 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.sioo.mapper21"/>
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory21"/>
+        <property name="basePackage" value="cn.sioo.mapper21"/>
+        <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
+        <property name="markerInterface" value="cn.sioo.mapper21.BaseMapper21"/>
+        <property name="properties">
+            <value>
+                mappers=tk.mybatis.mapper.common.Mapper
+            </value>
+        </property>
     </bean>
 
 

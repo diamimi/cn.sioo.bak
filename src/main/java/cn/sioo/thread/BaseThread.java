@@ -4,8 +4,6 @@ import cn.sioo.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 /**
  * Created by morrigan on 2017/6/3.
  */
@@ -15,27 +13,33 @@ public  class BaseThread<T> implements Runnable{
 
     public BaseService baseService;
 
-    public BaseThread(BaseService baseService) {
+    public T t;
+
+    public BaseThread(BaseService baseService,T t) {
 
         this.baseService=baseService;
+        this.t=t;
     }
 
-    @Override
     public void run() {
-        long begin=System.currentTimeMillis();
-        int count31=baseService.findCount31();
-        int count21=baseService.findCount21();
-        int size=2000;
-        int part=count21/size;
-        for(int i=0;i<=part;i++){
-            List<T> list = baseService.findList(count31, size);
-            if(list.size()>0){
-                baseService.insertBatch(list);
-            }else {
-                break;
+        /*try {
+            long begin=System.currentTimeMillis();
+            int count21=baseService.findCount21();
+            int count31=baseService.findCount31();
+            int size=10;
+            int part=count21/size;
+            for(int i=0;i<=part;i++){
+                List<T> list = baseService.findList(t,1+(count31/size), size);
+                if(list.size()>0){
+                    baseService.insertList(list);
+                }else {
+                    break;
+                }
+                count31=count31+1;
             }
-            count31=count31+size;
-        }
-        LOGGER.info("备份SmsUserConsumer,耗时:{}",(System.currentTimeMillis()-begin));
+            LOGGER.info("备份耗时:{},{}",(System.currentTimeMillis()-begin),t.getClass().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 }

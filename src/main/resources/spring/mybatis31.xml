@@ -15,11 +15,36 @@
         <property name="mapperLocations" value="classpath:mapper31/*.xml"/>
         <!-- 别名扫描包 -->
         <property name="typeAliasesPackage" value="cn.sioo.pojo"/>
+
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+
     </bean>
     <!-- 定义Mapper接口扫描器 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.sioo.mapper31"/>
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory31"/>
+        <property name="basePackage" value="cn.sioo.mapper31"/>
+        <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
+        <property name="markerInterface" value="cn.sioo.mapper31.BaseMapper31"/>
+        <property name="properties">
+            <value>
+                mappers=tk.mybatis.mapper.common.Mapper
+            </value>
+        </property>
     </bean>
 
 

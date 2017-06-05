@@ -5,12 +5,4 @@
 
 <mapper namespace="cn.sioo.mapper21.SmsUserMapper21">
 
-    <select id="findCount21" resultType="java.lang.Integer">
-        SELECT count(0) from sms_user
-    </select>
-
-    <select id="findList" resultType="cn.sioo.pojo.SmsUser">
-        SELECT * from sms_user ORDER BY time limit #{index},#{size}
-    </select>
-
 </mapper>

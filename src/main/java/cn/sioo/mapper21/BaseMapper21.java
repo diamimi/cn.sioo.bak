@@ -1,28 +1,12 @@
 package cn.sioo.mapper21;
 
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
 /**
  * Created by morrigan on 2017/6/3.
  */
-public interface BaseMapper21<T> {
+public interface BaseMapper21<T> extends Mapper<T> {
 
 
-    /**
-     * 查询21数量
-     *
-     * @return
-     */
-    int findCount21();
 
-    /**
-     * 查询21数据
-     *
-     * @param index
-     * @param size
-     * @return
-     */
-    List<T> findList(@Param("index") int index, @Param("size") int size);
 }
