@@ -52,16 +52,18 @@ public abstract class BaseService<T extends BaseEntity> {
     }
 
 
-
+    /**
+     * 查询31数量
+     * @param t
+     * @return
+     */
     public int selectCount31(T t) {
-
         return getMapper31().selectCount(t);
     }
 
 
-
     /**
-     * 查询31数量
+     * 查询21数量
      *
      * @return
      */
@@ -69,14 +71,6 @@ public abstract class BaseService<T extends BaseEntity> {
         return getMapper21().selectCount(t);
     }
 
-    /**
-     * 查询21数量
-     *
-     * @return
-     */
-   /* public int findCount21() {
-        return baseMapper21.findCount21();
-    }*/
 
     /**
      * 查询21数据
@@ -85,11 +79,11 @@ public abstract class BaseService<T extends BaseEntity> {
      * @param size
      * @return
      */
-    public List<T> findList(T t,int index, int size) {
-        Example example=new Example(t.getClass());
-        example.setOrderByClause("time");
+    public List<T> findList(Class<T> t,int index, int size) {
+        Example example=new Example(t);
+        example.setOrderByClause("id");
         PageHelper.startPage(index, size);
-        List<T> ts = getMapper31().selectByExample(example);
+        List<T> ts = getMapper21().selectByExample(example);
         return ts;
     }
 
