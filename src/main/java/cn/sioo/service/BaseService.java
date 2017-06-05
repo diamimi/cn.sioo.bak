@@ -89,4 +89,9 @@ public abstract class BaseService<T extends BaseEntity> {
     }
 
 
+    public List<T> selectListLimit(T t,int index,int size){
+        return getMapper21().selectListLimit(t,index,size);
+    }
+
+
 }
