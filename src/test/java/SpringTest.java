@@ -1,4 +1,3 @@
-import cn.sioo.pojo.SmsUser;
 import cn.sioo.service.SmsUserConsumeService;
 import cn.sioo.service.SmsUserService;
 import org.junit.Test;
@@ -6,8 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
 
 /**
  * Created by morrigan on 2017/6/5.
@@ -38,10 +35,10 @@ public class SpringTest {
 
     @Test
     public void findList(){
-        List<SmsUser> smsUsers = smsUserService.selectListLimit(new SmsUser(), 0, 15);
+       /* List<SmsUser> smsUsers = smsUserService.selectListLimit(new SmsUser(), 0, 15);
         for (SmsUser smsUser : smsUsers) {
             System.out.println(smsUser.getId()+"_"+smsUser.getLinkman());
-        }
+        }*/
     }
 
 

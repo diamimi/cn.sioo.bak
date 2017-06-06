@@ -50,7 +50,7 @@ public class BaseMapper21Provider extends MapperTemplate {
         }
         //将if添加到<where>
         sqlNodes.add(new WhereSqlNode(ms.getConfiguration(), new MixedSqlNode(ifNodes)));
-        sqlNodes.add(new StaticTextSqlNode("order by id"));
+        sqlNodes.add(new StaticTextSqlNode("ORDER BY #{type}"));
         //处理分页
         //sqlNodes.add(new IfSqlNode(new StaticTextSqlNode(" LIMIT #{limit}"),"offset==0"));
         sqlNodes.add(new IfSqlNode(new StaticTextSqlNode(" LIMIT #{index} , #{size} "),"size>0"));
