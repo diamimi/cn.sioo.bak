@@ -1,23 +1,34 @@
 package cn.sioo.pojo;
 
+import java.math.BigInteger;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
 public class SmsReleaseTemplate extends  BaseEntity {
 
+    private Integer id;
     private Integer uid;
 
     private String content;
 
     private Integer type;
 
-    private Integer effectivetime;
+    private BigInteger effectivetime;
 
     private Integer stat;
 
-    private Integer addtime;
+    private BigInteger addtime;
 
     private String aid;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getUid() {
         return uid;
@@ -43,11 +54,11 @@ public class SmsReleaseTemplate extends  BaseEntity {
         this.type = type;
     }
 
-    public Integer getEffectivetime() {
+    public BigInteger getEffectivetime() {
         return effectivetime;
     }
 
-    public void setEffectivetime(Integer effectivetime) {
+    public void setEffectivetime(BigInteger effectivetime) {
         this.effectivetime = effectivetime;
     }
 
@@ -59,11 +70,11 @@ public class SmsReleaseTemplate extends  BaseEntity {
         this.stat = stat;
     }
 
-    public Integer getAddtime() {
+    public BigInteger getAddtime() {
         return addtime;
     }
 
-    public void setAddtime(Integer addtime) {
+    public void setAddtime(BigInteger addtime) {
         this.addtime = addtime;
     }
 

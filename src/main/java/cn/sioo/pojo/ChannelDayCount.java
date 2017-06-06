@@ -1,10 +1,13 @@
 package cn.sioo.pojo;
 
+import javax.persistence.Column;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
 public class ChannelDayCount extends BaseEntity {
 
+    private Integer id;
     private Integer submitCount;
     private Integer submitSucc;
     private Integer submitFail;
@@ -12,7 +15,16 @@ public class ChannelDayCount extends BaseEntity {
     private Integer reportSucc;
     private Integer reportFail;
     private Integer createTime;
+    @Column(name="channelId")
     private Integer channelId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getSubmitCount() {
         return submitCount;

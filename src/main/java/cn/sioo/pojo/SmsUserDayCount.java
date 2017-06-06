@@ -5,6 +5,7 @@ package cn.sioo.pojo;
  */
 public class SmsUserDayCount extends BaseEntity {
 
+    private Integer id;
     private Integer uid;
     private Integer total;
     private Integer fail;
@@ -12,6 +13,14 @@ public class SmsUserDayCount extends BaseEntity {
     private Integer arriveFail;
     private Integer time;
     private Integer isReturn;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getUid() {
         return uid;

@@ -1,14 +1,19 @@
 package cn.sioo.pojo;
 
+import javax.persistence.Column;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
 public class SmsUserSignstore extends BaseEntity {
 
+    private Integer id;
+
     private Integer uid;
 
     private String store;
 
+    @Column(name="expend")
     private String expend;
 
     private Integer status;
@@ -22,8 +27,36 @@ public class SmsUserSignstore extends BaseEntity {
     private Integer channel;
 
     private String expendqd;
+    @Column(name="expend2")
     private String expend2;
     private String userexpend;
+
+    @Override
+    public String toString() {
+        return "SmsUserSignstore{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", store='" + store + '\'' +
+                ", expend='" + expend + '\'' +
+                ", status=" + status +
+                ", userstat=" + userstat +
+                ", signtime='" + signtime + '\'' +
+                ", addtime='" + addtime + '\'' +
+                ", type=" + type +
+                ", channel=" + channel +
+                ", expendqd='" + expendqd + '\'' +
+                ", expend2='" + expend2 + '\'' +
+                ", userexpend='" + userexpend + '\'' +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getAddtime() {
         return addtime;

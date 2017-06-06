@@ -5,6 +5,7 @@ package cn.sioo.pojo;
  */
 public class GatewayChannel extends BaseEntity {
 
+    private Integer id;
     private Integer gatewayTemplate;
     private Integer gatewayPort;
     private String gatewayIp;
@@ -37,12 +38,20 @@ public class GatewayChannel extends BaseEntity {
     private String routeRequire;
     private Integer routeChannel;
     private Integer signPosition;
-    private Integer isSignx;
+    private Integer isSigns;
     private Integer isGroup;
     private Integer status;
     private Integer standard;
     private Integer price;
-    private Integer remark;
+    private String remark;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getGatewayTemplate() {
         return gatewayTemplate;
@@ -300,12 +309,12 @@ public class GatewayChannel extends BaseEntity {
         this.signPosition = signPosition;
     }
 
-    public Integer getIsSignx() {
-        return isSignx;
+    public Integer getIsSigns() {
+        return isSigns;
     }
 
-    public void setIsSignx(Integer isSignx) {
-        this.isSignx = isSignx;
+    public void setIsSigns(Integer isSigns) {
+        this.isSigns = isSigns;
     }
 
     public Integer getIsGroup() {
@@ -340,11 +349,11 @@ public class GatewayChannel extends BaseEntity {
         this.price = price;
     }
 
-    public Integer getRemark() {
+    public String getRemark() {
         return remark;
     }
 
-    public void setRemark(Integer remark) {
+    public void setRemark(String remark) {
         this.remark = remark;
     }
 }

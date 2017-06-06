@@ -5,6 +5,9 @@ package cn.sioo.pojo;
  */
 public class SmsUserConsume extends BaseEntity {
 
+    private Integer id;
+
+
     private Integer uid;
 
     private Integer send;
@@ -14,6 +17,14 @@ public class SmsUserConsume extends BaseEntity {
     private Integer date;
 
     private Integer utype;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getUid() {
         return uid;

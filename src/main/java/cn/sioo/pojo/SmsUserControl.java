@@ -1,31 +1,51 @@
 package cn.sioo.pojo;
 
+import javax.persistence.Column;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
-public class SmsUserControl extends BaseEntity {
+public class SmsUserControl  extends BaseEntity{
+
+
 
     private Integer uid;
+    @Column(name = "isShowRpt")
     private Integer isShowRpt;
+    @Column(name = "childFun")
     private Integer childFun;
-    private Integer chidNum;
+    @Column(name = "childNum")
+    private Integer childNum;
+    @Column(name = "isRelease")
     private Integer isRelease;
+    @Column(name = "releaseNum")
     private Integer releaseNum;
     private Integer replyn;
+    @Column(name = "repeatFilter")
     private Integer repeatFilter;
+    @Column(name = "repeatNum")
     private Integer repeatNum;
+    @Column(name = "signPosition")
     private Integer signPosition;
+    @Column(name = "expidSign")
     private Integer expidSign;
+    @Column(name = "proxyIp")
     private String proxyIp;
     private Integer mobile;
     private Integer unicom;
     private Integer telecom;
+    @Column(name = "submitType")
     private Integer submitType;
     private Integer speed;
+    @Column(name = "blackAll")
     private Integer blackAll;
+    @Column(name = "repeatSign")
     private Integer repeatSign;
+    @Column(name = "repeatSignNum")
     private Integer repeatSignNum;
     private Integer line;
+
+
 
     public Integer getUid() {
         return uid;
@@ -51,12 +71,12 @@ public class SmsUserControl extends BaseEntity {
         this.childFun = childFun;
     }
 
-    public Integer getChidNum() {
-        return chidNum;
+    public Integer getChildNum() {
+        return childNum;
     }
 
-    public void setChidNum(Integer chidNum) {
-        this.chidNum = chidNum;
+    public void setChildNum(Integer childNum) {
+        this.childNum = childNum;
     }
 
     public Integer getIsRelease() {

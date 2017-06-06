@@ -33,13 +33,13 @@ public  class BaseThread<T extends BaseEntity> implements Runnable{
             long begin=System.currentTimeMillis();
             int count21=baseService.selectCount21(null);
             int count31=baseService.selectCount31(null);
-            int size=500;
+            int size=2000;
             int part=count21/size;
             for(int i=0;i<=part;i++){
                 if(count31<count21){
                     List<T> list = baseService.selectListLimit(t,type,count31, size);
                     if(list.size()>0){
-                        baseService.insertList(list);
+                            baseService.insertList(list);
                     }else {
                         break;
                     }

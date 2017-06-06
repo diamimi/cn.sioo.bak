@@ -1,18 +1,25 @@
 package cn.sioo.pojo;
 
+import javax.persistence.Column;
+import java.math.BigInteger;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
 public class SmsAccount extends BaseEntity{
 
+    private Integer id;
     private Integer uid;
 
     private Float amount;
 
+    @Column(name="amountNum")
     private Integer amountNum;
 
-    private Integer dataTime;
+    @Column(name="dateTime")
+    private BigInteger dateTime;
 
+    @Column(name="chargeType")
     private Integer chargeType;
 
     private Integer stat;
@@ -23,9 +30,19 @@ public class SmsAccount extends BaseEntity{
 
     private String memo;
 
+    @Column(name="giftNum")
     private Integer giftNum;
 
+    @Column(name="operateType")
     private Integer operateType;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getUid() {
         return uid;
@@ -51,12 +68,12 @@ public class SmsAccount extends BaseEntity{
         this.amountNum = amountNum;
     }
 
-    public Integer getDataTime() {
-        return dataTime;
+    public BigInteger getDateTime() {
+        return dateTime;
     }
 
-    public void setDataTime(Integer dataTime) {
-        this.dataTime = dataTime;
+    public void setDateTime(BigInteger dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Integer getChargeType() {

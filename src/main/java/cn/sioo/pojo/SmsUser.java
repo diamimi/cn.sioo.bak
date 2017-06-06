@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Table(name = "sms_user")
 public class SmsUser extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 291749309616942675L;
+
+    private Integer id;
     private String pwd;
     private String dpwd;
     private String company;
@@ -44,6 +46,15 @@ public class SmsUser extends BaseEntity implements Serializable {
     private Integer customerId;
     private Integer usertype;
     private Integer paytype;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getPriority() {
         return priority;
@@ -293,39 +304,5 @@ public class SmsUser extends BaseEntity implements Serializable {
         this.paytype = paytype;
     }
 
-    @Override
-    public String toString() {
-        return "SmsUser{" +
-                "id=" + id +
-                ", pwd='" + pwd + '\'' +
-                ", dpwd='" + dpwd + '\'' +
-                ", company='" + company + '\'' +
-                ", phone='" + phone + '\'' +
-                ", mail='" + mail + '\'' +
-                ", linkman='" + linkman + '\'' +
-                ", address='" + address + '\'' +
-                ", sales='" + sales + '\'' +
-                ", discount=" + discount +
-                ", price=" + price +
-                ", send=" + send +
-                ", sendOk=" + sendOk +
-                ", time=" + time +
-                ", addUid='" + addUid + '\'' +
-                ", stat=" + stat +
-                ", sms=" + sms +
-                ", logintime=" + logintime +
-                ", loginip='" + loginip + '\'' +
-                ", qq='" + qq + '\'' +
-                ", remark='" + remark + '\'' +
-                ", userkind=" + userkind +
-                ", kefu='" + kefu + '\'' +
-                ", username='" + username + '\'' +
-                ", submittype=" + submittype +
-                ", parendId=" + parentId +
-                ", hyType=" + hyType +
-                ", customerId=" + customerId +
-                ", usertype=" + usertype +
-                ", paytype=" + paytype +
-                '}';
-    }
+
 }

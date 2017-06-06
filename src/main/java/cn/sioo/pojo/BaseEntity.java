@@ -18,7 +18,7 @@ public class BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 
-	protected Integer id;
+
 
 	@Transient
 	private Integer pageIndex = Integer.valueOf(0);	//起始页索引
@@ -33,13 +33,7 @@ public class BaseEntity implements Serializable{
 	protected Integer currentPage;	//当前页
 
 
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Integer getPageIndex() {
 		return pageIndex;
