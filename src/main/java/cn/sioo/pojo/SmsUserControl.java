@@ -46,7 +46,7 @@ public class SmsUserControl  extends BaseEntity{
     private Integer line;
 
 
-
+    @Override
     public String getOrderBy() {
         return "uid";
     }

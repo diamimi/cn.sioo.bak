@@ -1,7 +1,6 @@
 package cn.sioo.mapper21;
 
-import cn.sioo.pojo.SmsUser;
-import cn.sioo.pojo.SmsUserControl;
+import cn.sioo.pojo.BaseEntity;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.scripting.xmltags.*;
 import tk.mybatis.mapper.entity.EntityColumn;
@@ -22,14 +21,10 @@ public class BaseMapper21Provider extends MapperTemplate {
     }
 
 
-    public SqlNode selectListLimit(MappedStatement ms) {
+    public SqlNode selectListLimit(MappedStatement ms) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class<?> entityClass = getEntityClass(ms);
-        String orderBy = "id";
-        if (tableName(entityClass).equals("sms_user")) {
-            orderBy = new SmsUser().getOrderBy();
-        } else if (tableName(entityClass).equals("sms_user_control")) {
-            orderBy = new SmsUserControl().getOrderBy();
-        }
+        BaseEntity baseEntity=(BaseEntity)entityClass.newInstance();
+        String orderBy=baseEntity.getOrderBy();
         //修改返回值类型为实体类型
         setResultType(ms, entityClass);
 

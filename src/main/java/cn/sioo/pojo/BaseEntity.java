@@ -33,7 +33,9 @@ public class BaseEntity implements Serializable{
 	protected Integer currentPage;	//当前页
 
 
-
+	public String getOrderBy() {
+		return "id";
+	}
 
 	public Integer getPageIndex() {
 		return pageIndex;

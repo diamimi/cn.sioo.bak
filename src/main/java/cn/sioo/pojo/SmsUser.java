@@ -48,7 +48,7 @@ public class SmsUser extends BaseEntity implements Serializable {
     private Integer paytype;
 
 
-
+    @Override
     public String getOrderBy() {
         return "time";
     }
