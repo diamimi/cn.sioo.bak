@@ -1,8 +1,9 @@
 package cn.sioo.mapper31;
 
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.provider.SpecialProvider;
 
 import java.util.List;
 
@@ -11,6 +12,9 @@ import java.util.List;
  */
 public interface BaseMapper31<T> extends Mapper<T> {
 
-    @InsertProvider(type = SpecialProvider.class, method = "dynamicSQL")
+    @InsertProvider(type = BaseMapper31Provider.class, method = "dynamicSQL")
     int insertList(List<T> recordList);
+
+    @DeleteProvider(type = BaseMapper31Provider.class, method = "dynamicSQL")
+    void delByIds(@Param("list") List<Integer> ids);
 }

@@ -53,7 +53,6 @@ public abstract class BaseService<T extends BaseEntity> {
     /**
      * 查询21数据
      * @param t
-     * @param type
      * @param index
      * @param size
      * @return
@@ -62,7 +61,21 @@ public abstract class BaseService<T extends BaseEntity> {
         return baseMapper21.selectListLimit(t,index,size);
     }
 
+    public List<T> selectList21(T t){
+        return baseMapper21.select(null);
+    }
 
+    public List<T> selectList31(T t){
+       return baseMapper31.select(null);
+    }
+
+    /**
+     * 根据id批量删除数据
+     * @param ids
+     */
+    public void delByIds(List<Integer> ids){
+       baseMapper31.delByIds(ids);
+    }
 
 
 }

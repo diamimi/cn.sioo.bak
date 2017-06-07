@@ -24,7 +24,8 @@ public class BaseMapper21Provider extends MapperTemplate {
     public SqlNode selectListLimit(MappedStatement ms) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class<?> entityClass = getEntityClass(ms);
         BaseEntity baseEntity=(BaseEntity)entityClass.newInstance();
-        String orderBy=baseEntity.getOrderBy();
+
+       String orderBy=baseEntity.getOrderBy();
         //修改返回值类型为实体类型
         setResultType(ms, entityClass);
 

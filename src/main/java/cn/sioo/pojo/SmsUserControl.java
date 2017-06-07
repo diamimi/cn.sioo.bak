@@ -220,4 +220,23 @@ public class SmsUserControl  extends BaseEntity{
     public void setLine(Integer line) {
         this.line = line;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SmsUserControl that = (SmsUserControl) o;
+
+        if (uid != null ? !uid.equals(that.uid) : that.uid != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = uid != null ? uid.hashCode() : 0;
+        return result;
+    }
 }
