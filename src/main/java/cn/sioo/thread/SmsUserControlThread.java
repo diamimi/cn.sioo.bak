@@ -90,22 +90,22 @@ public class SmsUserControlThread implements Runnable {
             List<SmsUserControl> list31 = smsUserControlService.selectList31(null);
             List<SmsUserControl> diffrentAdd = getDiffrentAdd(list21, list31);
             if (diffrentAdd.size() > 0) {
-                    if(diffrentAdd.size()>3000){
-                        int limitSize=3000;
-                        int part=diffrentAdd.size()/limitSize;
-                        for(int i=0;i<part;i++){
-                            List<SmsUserControl> subList= diffrentAdd.subList(0,limitSize);
-                            smsUserControlService.insertList(subList);
-                            diffrentAdd.subList(0,limitSize).clear();
-                        }
-                        if(!diffrentAdd.isEmpty()){
-                            smsUserControlService.insertList(diffrentAdd);
-                        }
-                    }else{
+                if (diffrentAdd.size() > 3000) {
+                    int limitSize = 3000;
+                    int part = diffrentAdd.size() / limitSize;
+                    for (int i = 0; i < part; i++) {
+                        List<SmsUserControl> subList = diffrentAdd.subList(0, limitSize);
+                        smsUserControlService.insertList(subList);
+                        diffrentAdd.subList(0, limitSize).clear();
+                    }
+                    if (!diffrentAdd.isEmpty()) {
                         smsUserControlService.insertList(diffrentAdd);
                     }
-                smsUserControlService.insertList(diffrentAdd);
+                } else {
+                    smsUserControlService.insertList(diffrentAdd);
+                }
             }
+            smsUserControlService.insertList(diffrentAdd);
             List<Integer> diffrentDel = getDiffrentDel(list21, list31);
             if (diffrentDel.size() > 0) {
                 smsUserControlService.delByIds(diffrentDel);
