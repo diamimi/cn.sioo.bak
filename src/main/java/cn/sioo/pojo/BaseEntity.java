@@ -4,10 +4,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
- * 基类、包含分页和ID
- *
- * @author CQL  331737188@qq.com
- * @date : 2015年9月23日 下午3:58:51
+ * 基类
  */
 public class BaseEntity implements Serializable {
 
