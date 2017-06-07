@@ -47,6 +47,12 @@ public class SmsUserControl  extends BaseEntity{
 
 
 
+    public String getOrderBy() {
+        return "uid";
+    }
+
+
+
     public Integer getUid() {
         return uid;
     }

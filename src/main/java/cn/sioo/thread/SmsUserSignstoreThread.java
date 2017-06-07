@@ -35,7 +35,7 @@ public  class SmsUserSignstoreThread implements Runnable{
             int part=count21/size;
             for(int i=0;i<=part;i++){
                 if(count31<count21){
-                    List<SmsUserSignstore> list = smsUserSignstoreService.selectListLimit(new SmsUserSignstore(),type,count31, size);
+                    List<SmsUserSignstore> list = smsUserSignstoreService.selectListLimit(new SmsUserSignstore(),count31, size);
                     if(list.size()>0){
                         for (SmsUserSignstore smsUserSignstore : list) {
                             if(smsUserSignstore.getExpend().equals("794901701229886")){

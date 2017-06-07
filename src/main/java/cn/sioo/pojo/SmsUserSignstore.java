@@ -31,6 +31,8 @@ public class SmsUserSignstore extends BaseEntity {
     private String expend2;
     private String userexpend;
 
+
+
     @Override
     public String toString() {
         return "SmsUserSignstore{" +

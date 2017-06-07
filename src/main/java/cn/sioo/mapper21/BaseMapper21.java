@@ -12,6 +12,6 @@ import java.util.List;
 public interface BaseMapper21<T> extends Mapper<T> {
 
     @SelectProvider(type = BaseMapper21Provider.class, method = "dynamicSQL")
-    List<T> selectListLimit(@Param("entity")T t,@Param("type")String type, @Param("index") int index,@Param("size") int size);
+    List<T> selectListLimit(@Param("entity")T t, @Param("index") int index,@Param("size") int size);
 
 }

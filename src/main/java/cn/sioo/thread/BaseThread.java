@@ -21,10 +21,9 @@ public  class BaseThread<T extends BaseEntity> implements Runnable{
     private String type;
 
 
-    public BaseThread(BaseService baseService,T t,String type) {
+    public BaseThread(BaseService baseService,T t) {
         this.baseService=baseService;
         this.t=t;
-        this.type=type;
     }
 
     @Override
@@ -33,21 +32,17 @@ public  class BaseThread<T extends BaseEntity> implements Runnable{
             long begin=System.currentTimeMillis();
             int count21=baseService.selectCount21(null);
             int count31=baseService.selectCount31(null);
-            int size=2000;
+            int size=3000;
             int part=count21/size;
             for(int i=0;i<=part;i++){
-                if(count31<count21){
-                    List<T> list = baseService.selectListLimit(t,type,count31, size);
+                    List<T> list = baseService.selectListLimit(t,count31, size);
                     if(list.size()>0){
                             baseService.insertList(list);
                     }else {
                         break;
                     }
                     count31=count31+size;
-                }else {
-                    break;
                 }
-            }
             LOGGER.info("备份耗时:{},{}",(System.currentTimeMillis()-begin),t.getClass().getName());
         } catch (Exception e) {
             e.printStackTrace();

@@ -33,13 +33,13 @@ public class BakMain {
 
 
        // service.scheduleAtFixedRate(new BaseThread(smsUserService,new SmsUser(),"TIME"), 1, 150, TimeUnit.SECONDS);
-       // service.scheduleAtFixedRate(new BaseThread(smsUserConsumeService,new SmsUserConsume(),"ID"), 1, 150, TimeUnit.SECONDS);
+       //service.scheduleAtFixedRate(new BaseThread(smsUserConsumeService,new SmsUserConsume(),"ID"), 1, 150, TimeUnit.SECONDS);
         //service.scheduleAtFixedRate(new BaseThread(gatewayChannelServiceg,new GatewayChannel(),"ID"), 1, 150, TimeUnit.SECONDS);
         //service.scheduleAtFixedRate(new BaseThread(channelDayCountService,new ChannelDayCount(),"ID"), 1, 150, TimeUnit.SECONDS);
        // service.scheduleAtFixedRate(new BaseThread(smsAccountService,new SmsAccount(),"ID"), 1, 150, TimeUnit.SECONDS);
        // service.scheduleAtFixedRate(new BaseThread(smsReleaseTemplateService,new SmsReleaseTemplate(),"ID"), 1, 150, TimeUnit.SECONDS);
        // service.scheduleAtFixedRate(new BaseThread(smsUserControlService,new SmsUserControl(),"UID"), 1, 150, TimeUnit.SECONDS);
-        service.scheduleAtFixedRate(new BaseThread(smsUserSignstoreService,new SmsUserSignstore(),"ID"), 1, 150, TimeUnit.SECONDS);
+       service.scheduleAtFixedRate(new BaseThread(smsUserSignstoreService,new SmsUserSignstore()), 1, 60, TimeUnit.SECONDS);
     }
 
 }
