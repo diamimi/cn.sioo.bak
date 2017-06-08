@@ -105,7 +105,6 @@ public class SmsUserControlThread implements Runnable {
                     smsUserControlService.insertList(diffrentAdd);
                 }
             }
-            smsUserControlService.insertList(diffrentAdd);
             List<Integer> diffrentDel = getDiffrentDel(list21, list31);
             if (diffrentDel.size() > 0) {
                 smsUserControlService.delByIds(diffrentDel);

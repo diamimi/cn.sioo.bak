@@ -5,6 +5,12 @@
 
 <mapper namespace="cn.sioo.mapper31.SmsUserMapper31">
 
+    <delete id="deleteIds" >
+        delete from sms_user where id in
+        <foreach item="list" collection="list" open="(" separator="," close=")">
+            #{list}
+        </foreach>
 
+    </delete>
 
 </mapper>

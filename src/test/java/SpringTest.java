@@ -1,4 +1,4 @@
-import cn.sioo.pojo.SmsUserControl;
+import cn.sioo.pojo.SmsUser;
 import cn.sioo.service.SmsUserConsumeService;
 import cn.sioo.service.SmsUserControlService;
 import cn.sioo.service.SmsUserService;
@@ -29,55 +29,62 @@ public class SpringTest {
     @Autowired
     private SmsUserControlService smsUserControlService;
 
+
+
+
+
     @Test
-    public void count31() {
-        int count1 = smsUserService.selectCount31(null);
-        int count2 = smsUserConsumeService.selectCount31(null);
-        System.out.println(count1);
-        System.out.println(count2);
+    public void test1(){
+     /*   List<SmsUser> list21 = smsUserService.selectList21(null);
+        List<SmsUser> list31 = smsUserService.selectList31(null);
+        List<SmsUser> diffrentAdd = getDiffrentAdd1(list21, list31);
+        for (SmsUser smsUser : diffrentAdd) {
+            System.out.println(smsUser.getId());
+        }*/
     }
 
     @Test
-    public void count21() {
-        int count = smsUserConsumeService.selectCount21(null);
-        System.out.println(count);
-    }
-
-
-
-
-    @Test
-    public void getDiffrent(){
-        List<SmsUserControl> list21 =smsUserControlService.selectList21(null);
-        List<SmsUserControl> list31= smsUserControlService.selectList31(null);
-        List<SmsUserControl> diffrent = getDiffrentDel(list21, list31);
-        for (SmsUserControl smsUserControl : diffrent) {
-            System.out.println(smsUserControl.getUid());
+    public void test2(){
+        List<SmsUser> list21=new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            SmsUser smsUser=new SmsUser();
+            smsUser.setId(i);
+            list21.add(smsUser);
+        }
+        List<SmsUser> list31=new ArrayList<>();
+        for (int i = 7; i < 17; i++) {
+            SmsUser smsUser=new SmsUser();
+            smsUser.setId(i);
+            list31.add(smsUser);
+        }
+        List<SmsUser> diffrentAdd1 = getDiffrentAdd1(list21, list31);
+        for (SmsUser smsUser : diffrentAdd1) {
+            System.out.println(smsUser.getId());
         }
     }
 
 
-    public List<SmsUserControl> getDiffrentAdd(List<SmsUserControl> list21, List<SmsUserControl> list31) {
-        List<SmsUserControl> diff = new ArrayList<>();
-        List<SmsUserControl> maxList = list21;
-        List<SmsUserControl> minList = list31;
+    public List<SmsUser> getDiffrentAdd1(List<SmsUser> list21, List<SmsUser> list31) {
+        List<SmsUser> diff = new ArrayList<>();
+        List<SmsUser> maxList = list21;
+        List<SmsUser> minList = list31;
         if (list31.size() > list21.size()) {
             maxList = list31;
             minList = list21;
         }
-        Map<SmsUserControl, Integer> map = new HashMap<>(maxList.size());
-        for (SmsUserControl smsUserControl : maxList) {
-            map.put(smsUserControl, 1);
+        Map<SmsUser, Integer> map = new HashMap<>(maxList.size());
+        for (SmsUser smsUser : maxList) {
+            map.put(smsUser, 1);
         }
-        for (SmsUserControl smsUserControl : minList) {
-            if (map.get(smsUserControl) != null) {
-                map.put(smsUserControl, 2);
+        for (SmsUser smsUser : minList) {
+            if (map.get(smsUser) != null) {
+                map.put(smsUser, 2);
                 continue;
             }
-            diff.add(smsUserControl);
+                diff.add(smsUser);
         }
-        for (Map.Entry<SmsUserControl, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == 1&&list21.contains(entry.getKey())) {
+        for (Map.Entry<SmsUser, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1 && list21.contains(entry.getKey())) {
                 diff.add(entry.getKey());
             }
         }
@@ -86,41 +93,7 @@ public class SpringTest {
     }
 
 
-    public List<SmsUserControl> getDiffrentDel(List<SmsUserControl> list21, List<SmsUserControl> list31) {
-        List<SmsUserControl> diff = new ArrayList<>();
-        List<SmsUserControl> maxList = list21;
-        List<SmsUserControl> minList = list31;
-        if (list31.size() > list21.size()) {
-            maxList = list31;
-            minList = list21;
-        }
-        Map<SmsUserControl, Integer> map = new HashMap<>(maxList.size());
-        for (SmsUserControl smsUserControl : maxList) {
-            map.put(smsUserControl, 1);
-        }
-        for (SmsUserControl smsUserControl : minList) {
-            if (map.get(smsUserControl) != null) {
-                map.put(smsUserControl, 2);
-                continue;
-            }
-            diff.add(smsUserControl);
-        }
-        for (Map.Entry<SmsUserControl, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == 1&&list31.contains(entry.getKey())) {
-                diff.add(entry.getKey());
-            }
-        }
-        return diff;
-
-    }
 
 
-    @Test
-    public void delByIDS(){
-        List<Integer> list=new ArrayList<>();
-        list.add(25);
-        list.add(26);
-        smsUserControlService.delByIds(list);
-    }
 
 }

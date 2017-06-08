@@ -3,6 +3,7 @@ package cn.sioo.pojo;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by morrigan on 2017/6/1.
@@ -54,7 +55,49 @@ public class SmsUser extends BaseEntity implements Serializable {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SmsUser smsUser = (SmsUser) o;
+        return Objects.equals(id, smsUser.id) &&
+                Objects.equals(pwd, smsUser.pwd) &&
+                Objects.equals(dpwd, smsUser.dpwd) &&
+                Objects.equals(company, smsUser.company) &&
+                Objects.equals(phone, smsUser.phone) &&
+                Objects.equals(tel, smsUser.tel) &&
+                Objects.equals(mail, smsUser.mail) &&
+                Objects.equals(linkman, smsUser.linkman) &&
+                Objects.equals(address, smsUser.address) &&
+                Objects.equals(sales, smsUser.sales) &&
+                Objects.equals(discount, smsUser.discount) &&
+                Objects.equals(price, smsUser.price) &&
+                Objects.equals(send, smsUser.send) &&
+                Objects.equals(sendOk, smsUser.sendOk) &&
+                Objects.equals(time, smsUser.time) &&
+                Objects.equals(addUid, smsUser.addUid) &&
+                Objects.equals(stat, smsUser.stat) &&
+                Objects.equals(sms, smsUser.sms) &&
+                Objects.equals(priority, smsUser.priority) &&
+                Objects.equals(logintime, smsUser.logintime) &&
+                Objects.equals(loginip, smsUser.loginip) &&
+                Objects.equals(qq, smsUser.qq) &&
+                Objects.equals(remark, smsUser.remark) &&
+                Objects.equals(userkind, smsUser.userkind) &&
+                Objects.equals(kefu, smsUser.kefu) &&
+                Objects.equals(username, smsUser.username) &&
+                Objects.equals(submittype, smsUser.submittype) &&
+                Objects.equals(parentId, smsUser.parentId) &&
+                Objects.equals(hyType, smsUser.hyType) &&
+                Objects.equals(customerId, smsUser.customerId) &&
+                Objects.equals(usertype, smsUser.usertype) &&
+                Objects.equals(paytype, smsUser.paytype);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pwd, dpwd, company, phone, tel, mail, linkman, address, sales, discount, price, send, sendOk, time, addUid, stat, sms, priority, logintime, loginip, qq, remark, userkind, kefu, username, submittype, parentId, hyType, customerId, usertype, paytype);
+    }
 
     public Integer getId() {
         return id;

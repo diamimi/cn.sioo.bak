@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by morrigan on 2017/6/3.
  */
-public class BaseThread<T extends BaseEntity> implements Runnable {
+public  class BaseThread<T extends BaseEntity> implements Runnable {
 
     public static Logger LOGGER = LoggerFactory.getLogger(BaseThread.class);
 
@@ -31,8 +31,8 @@ public class BaseThread<T extends BaseEntity> implements Runnable {
     public void run() {
         try {
             long begin = System.currentTimeMillis();
-            int count21 = baseService.selectCount21(null);
             int count31 = baseService.selectCount31(null);
+            int count21 = baseService.selectCount21(null);
             int size = 3000;
             int part = count21 / size;
             for (int i = 0; i <= part; i++) {

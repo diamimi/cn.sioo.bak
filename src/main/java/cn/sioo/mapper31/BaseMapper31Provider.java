@@ -47,7 +47,18 @@ public class BaseMapper31Provider extends MapperTemplate {
         Class<?> entityClass = this.getEntityClass(ms);
         StringBuilder sql = new StringBuilder();
         sql.append(SqlHelper.deleteFromTable(entityClass, this.tableName(entityClass)));
-        sql.append(" WHERE uid in");
+        sql.append(" WHERE id in");
+        sql.append(" <foreach item=\"list\" collection=\"list\" open=\"(\" separator=\",\" close=\")\">");
+        sql.append("#{list}");
+        sql.append("</foreach>");
+        return sql.toString();
+    }
+
+    public String delByUids(MappedStatement ms) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class<?> entityClass = this.getEntityClass(ms);
+        StringBuilder sql = new StringBuilder();
+        sql.append(SqlHelper.deleteFromTable(entityClass, this.tableName(entityClass)));
+        sql.append(" WHERE id uid");
         sql.append(" <foreach item=\"list\" collection=\"list\" open=\"(\" separator=\",\" close=\")\">");
         sql.append("#{list}");
         sql.append("</foreach>");
