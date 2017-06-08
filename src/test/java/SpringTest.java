@@ -30,70 +30,44 @@ public class SpringTest {
     private SmsUserControlService smsUserControlService;
 
 
-
-
-
     @Test
-    public void test1(){
-     /*   List<SmsUser> list21 = smsUserService.selectList21(null);
+    public void test1() {
+        List<SmsUser> list21 = smsUserService.selectList21(null);
         List<SmsUser> list31 = smsUserService.selectList31(null);
-        List<SmsUser> diffrentAdd = getDiffrentAdd1(list21, list31);
+        List<SmsUser> diffrentAdd = getDiffrentAdd(list21, list31);
         for (SmsUser smsUser : diffrentAdd) {
             System.out.println(smsUser.getId());
-        }*/
-    }
-
-    @Test
-    public void test2(){
-        List<SmsUser> list21=new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            SmsUser smsUser=new SmsUser();
-            smsUser.setId(i);
-            list21.add(smsUser);
-        }
-        List<SmsUser> list31=new ArrayList<>();
-        for (int i = 7; i < 17; i++) {
-            SmsUser smsUser=new SmsUser();
-            smsUser.setId(i);
-            list31.add(smsUser);
-        }
-        List<SmsUser> diffrentAdd1 = getDiffrentAdd1(list21, list31);
-        for (SmsUser smsUser : diffrentAdd1) {
-            System.out.println(smsUser.getId());
         }
     }
 
 
-    public List<SmsUser> getDiffrentAdd1(List<SmsUser> list21, List<SmsUser> list31) {
+    public List<SmsUser> getDiffrentAdd(List<SmsUser> list2, List<SmsUser> list31) {
         List<SmsUser> diff = new ArrayList<>();
-        List<SmsUser> maxList = list21;
+        List<SmsUser> maxList = list2;
         List<SmsUser> minList = list31;
-        if (list31.size() > list21.size()) {
+        if (list31.size() > list2.size()) {
             maxList = list31;
-            minList = list21;
+            minList = list2;
         }
-        Map<SmsUser, Integer> map = new HashMap<>(maxList.size());
+        Map<Integer, SmsUser> map = new HashMap<>(maxList.size());
         for (SmsUser smsUser : maxList) {
-            map.put(smsUser, 1);
+            map.put(smsUser.getId(), smsUser);
         }
         for (SmsUser smsUser : minList) {
-            if (map.get(smsUser) != null) {
-                map.put(smsUser, 2);
+            if (map.get(smsUser.getId()) != null && map.get(smsUser.getId()).equals(smsUser)) {
+                smsUser.setDiff(2);
+                map.put(smsUser.getId(), smsUser);
                 continue;
             }
-                diff.add(smsUser);
+            diff.add(smsUser);
         }
-        for (Map.Entry<SmsUser, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == 1 && list21.contains(entry.getKey())) {
-                diff.add(entry.getKey());
+        for (Map.Entry<Integer, SmsUser> entry : map.entrySet()) {
+            if (entry.getValue().getDiff() == 1) {
+                diff.add(entry.getValue());
             }
         }
         return diff;
-
     }
-
-
-
 
 
 }

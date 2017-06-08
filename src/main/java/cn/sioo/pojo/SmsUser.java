@@ -2,6 +2,7 @@ package cn.sioo.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -48,6 +49,16 @@ public class SmsUser extends BaseEntity implements Serializable {
     private Integer usertype;
     private Integer paytype;
 
+    @Transient
+    private  Integer diff=1;
+
+    public Integer getDiff() {
+        return diff;
+    }
+
+    public void setDiff(Integer diff) {
+        this.diff = diff;
+    }
 
     @Override
     public String getOrderBy() {
