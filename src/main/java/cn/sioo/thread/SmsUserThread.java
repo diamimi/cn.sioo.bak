@@ -28,17 +28,17 @@ public class SmsUserThread implements Runnable {
 
     public List<SmsUser> getDiffrentAdd(List<SmsUser> list2, List<SmsUser> list31) {
         List<SmsUser> diff = new ArrayList<>();
-        List<SmsUser> maxList = list2;
+       /* List<SmsUser> maxList = list2;
         List<SmsUser> minList = list31;
         if (list31.size() > list2.size()) {
             maxList = list31;
             minList = list2;
-        }
-        Map<Integer, SmsUser> map = new HashMap<>(maxList.size());
-        for (SmsUser smsUser : maxList) {
+        }*/
+        Map<Integer, SmsUser> map = new HashMap<>();
+        for (SmsUser smsUser : list31) {
             map.put(smsUser.getId(), smsUser);
         }
-        for (SmsUser smsUser : minList) {
+        for (SmsUser smsUser : list2) {
             if (map.get(smsUser.getId()) != null && map.get(smsUser.getId()).equals(smsUser)) {
                 smsUser.setDiff(2);
                 map.put(smsUser.getId(), smsUser);
@@ -47,7 +47,7 @@ public class SmsUserThread implements Runnable {
             diff.add(smsUser);
         }
         for (Map.Entry<Integer, SmsUser> entry : map.entrySet()) {
-            if (entry.getValue().getDiff() ==1 ) {
+            if (entry.getValue().getDiff() == 1&&list2.contains(entry.getValue())) {
                 diff.add(entry.getValue());
             }
         }
