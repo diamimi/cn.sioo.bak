@@ -64,11 +64,11 @@ public abstract class BaseService<T extends BaseEntity> {
     }
 
     public List<T> selectList21(T t) {
-        return baseMapper21.select(null);
+        return baseMapper21.select(t);
     }
 
     public List<T> selectList31(T t) {
-        return baseMapper31.select(null);
+        return baseMapper31.select(t);
     }
 
     /**
@@ -80,8 +80,13 @@ public abstract class BaseService<T extends BaseEntity> {
         baseMapper31.delByIds(ids);
     }
 
-    public void delete() {
-        baseMapper31.delete(null);
+    /**
+     * 根据id批量删除数据
+     *
+     * @param uids
+     */
+    public void delByUids(List<Integer> uids) {
+        baseMapper31.delByUids(uids);
     }
 
 

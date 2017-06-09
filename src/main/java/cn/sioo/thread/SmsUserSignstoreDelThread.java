@@ -27,26 +27,14 @@ public class SmsUserSignstoreDelThread implements Runnable {
 
     public List<Integer> getDiffrentDel(List<SmsUserSignstore> list21, List<SmsUserSignstore> list31) {
         List<Integer> diff = new ArrayList<>();
-        List<SmsUserSignstore> maxList = list21;
-        List<SmsUserSignstore> minList = list31;
-        if (list31.size() > list21.size()) {
-            maxList = list31;
-            minList = list21;
-        }
-        Map<Integer, Integer> map = new HashMap<>(maxList.size());
-        for (SmsUserSignstore SmsUserSignstore : maxList) {
+
+        Map<Integer, Integer> map = new HashMap<>();
+        for (SmsUserSignstore SmsUserSignstore : list21) {
             map.put(SmsUserSignstore.getId(), 1);
         }
-        for (SmsUserSignstore SmsUserSignstore : minList) {
-            if (map.get(SmsUserSignstore.getId()) != null) {
-                map.put(SmsUserSignstore.getId(), 2);
-                continue;
-            }
-            diff.add(SmsUserSignstore.getId());
-        }
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == 1 && list31.contains(entry.getKey())) {
-                diff.add(entry.getKey());
+        for (SmsUserSignstore smsUserSignstore : list31) {
+            if (map.get(smsUserSignstore.getId()) == null) {
+                diff.add(smsUserSignstore.getId());
             }
         }
         return diff;

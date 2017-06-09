@@ -26,34 +26,20 @@ public class SmsUserThread implements Runnable {
 
 
 
-    public List<SmsUser> getDiffrentAdd(List<SmsUser> list2, List<SmsUser> list31) {
+    public List<SmsUser> getDiffrentAdd(List<SmsUser> list21, List<SmsUser> list31) {
         List<SmsUser> diff = new ArrayList<>();
-       /* List<SmsUser> maxList = list2;
-        List<SmsUser> minList = list31;
-        if (list31.size() > list2.size()) {
-            maxList = list31;
-            minList = list2;
-        }*/
         Map<Integer, SmsUser> map = new HashMap<>();
         for (SmsUser smsUser : list31) {
             map.put(smsUser.getId(), smsUser);
         }
-        for (SmsUser smsUser : list2) {
-            if (map.get(smsUser.getId()) != null && map.get(smsUser.getId()).equals(smsUser)) {
-                smsUser.setDiff(2);
-                map.put(smsUser.getId(), smsUser);
-                continue;
+        for (SmsUser smsUser : list21) {
+            if (!(map.get(smsUser.getId()) != null &&map.get(smsUser.getId()).equals(smsUser))) {
+                diff.add(smsUser);
             }
-            diff.add(smsUser);
-        }
-        for (Map.Entry<Integer, SmsUser> entry : map.entrySet()) {
-            if (entry.getValue().getDiff() == 1&&list2.contains(entry.getValue())) {
-                diff.add(entry.getValue());
-            }
+
         }
         return diff;
     }
-
 
     @Override
     public void run() {
@@ -63,6 +49,7 @@ public class SmsUserThread implements Runnable {
             List<SmsUser> list31 = smsUserService.selectList31(null);
             List<SmsUser> diffrentAdd = getDiffrentAdd(list21, list31);
             if (diffrentAdd.size() > 0) {
+                LOGGER.info("更新SmsUser,数量:{}",diffrentAdd.size());
                 List<Integer> ids=new ArrayList<>();
                 for (SmsUser smsUser : diffrentAdd) {
                     ids.add(smsUser.getId());
@@ -83,7 +70,7 @@ public class SmsUserThread implements Runnable {
                     smsUserService.insertList(diffrentAdd);
                 }
             }
-            LOGGER.info("备份耗时:{},{}", (System.currentTimeMillis() - begin), "SmsUserSignstore");
+            LOGGER.info("{} 备份耗时,{}", "SmsUser",(System.currentTimeMillis() - begin));
         } catch (Exception e) {
             e.printStackTrace();
         }

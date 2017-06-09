@@ -7,4 +7,5 @@ import cn.sioo.pojo.SmsUserConsume;
  */
 public interface SmsUserConsumeMapper31 extends BaseMapper31<SmsUserConsume> {
 
+    int selectConsumeCount31(SmsUserConsume smsUserConsume);
 }

@@ -10,7 +10,7 @@
         <module name="cn.sioo.bak" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="cn.sioo.bak" target="1.8" />
     </bytecodeTargetLevel>
   </component>

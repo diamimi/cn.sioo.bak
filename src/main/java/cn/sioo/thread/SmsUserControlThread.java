@@ -26,60 +26,20 @@ public class SmsUserControlThread implements Runnable {
 
     public List<SmsUserControl> getDiffrentAdd(List<SmsUserControl> list21, List<SmsUserControl> list31) {
         List<SmsUserControl> diff = new ArrayList<>();
-        List<SmsUserControl> maxList = list21;
-        List<SmsUserControl> minList = list31;
-        if (list31.size() > list21.size()) {
-            maxList = list31;
-            minList = list21;
+        Map<Integer, SmsUserControl> map = new HashMap<>();
+        for (SmsUserControl smsUserControl : list31) {
+            map.put(smsUserControl.getUid(), smsUserControl);
         }
-        Map<SmsUserControl, Integer> map = new HashMap<>(maxList.size());
-        for (SmsUserControl smsUserControl : maxList) {
-            map.put(smsUserControl, 1);
-        }
-        for (SmsUserControl smsUserControl : minList) {
-            if (map.get(smsUserControl) != null) {
-                map.put(smsUserControl, 2);
-                continue;
+        for (SmsUserControl smsUserConsume : list21) {
+            if (!(map.get(smsUserConsume.getUid()) != null && map.get(smsUserConsume.getUid()).equals(smsUserConsume))) {
+                diff.add(smsUserConsume);
             }
-            diff.add(smsUserControl);
-        }
-        for (Map.Entry<SmsUserControl, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == 1 && list21.contains(entry.getKey())) {
-                diff.add(entry.getKey());
-            }
+
         }
         return diff;
-
     }
 
 
-    public List<Integer> getDiffrentDel(List<SmsUserControl> list21, List<SmsUserControl> list31) {
-        List<Integer> diff = new ArrayList<>();
-        List<SmsUserControl> maxList = list21;
-        List<SmsUserControl> minList = list31;
-        if (list31.size() > list21.size()) {
-            maxList = list31;
-            minList = list21;
-        }
-        Map<Integer, Integer> map = new HashMap<>(maxList.size());
-        for (SmsUserControl smsUserControl : maxList) {
-            map.put(smsUserControl.getUid(), 1);
-        }
-        for (SmsUserControl smsUserControl : minList) {
-            if (map.get(smsUserControl.getUid()) != null) {
-                map.put(smsUserControl.getUid(), 2);
-                continue;
-            }
-            diff.add(smsUserControl.getUid());
-        }
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == 1 && list31.contains(entry.getKey())) {
-                diff.add(entry.getKey());
-            }
-        }
-        return diff;
-
-    }
 
 
     @Override
@@ -90,6 +50,12 @@ public class SmsUserControlThread implements Runnable {
             List<SmsUserControl> list31 = smsUserControlService.selectList31(null);
             List<SmsUserControl> diffrentAdd = getDiffrentAdd(list21, list31);
             if (diffrentAdd.size() > 0) {
+                LOGGER.info("更新SmsUser,数量:{}",diffrentAdd.size());
+                List<Integer> uids=new ArrayList<>();
+                for (SmsUserControl smsUserControl : diffrentAdd) {
+                    uids.add(smsUserControl.getUid());
+                }
+                smsUserControlService.delByUids(uids);
                 if (diffrentAdd.size() > 3000) {
                     int limitSize = 3000;
                     int part = diffrentAdd.size() / limitSize;
@@ -105,10 +71,7 @@ public class SmsUserControlThread implements Runnable {
                     smsUserControlService.insertList(diffrentAdd);
                 }
             }
-            List<Integer> diffrentDel = getDiffrentDel(list21, list31);
-            if (diffrentDel.size() > 0) {
-                smsUserControlService.delByIds(diffrentDel);
-            }
+
             LOGGER.info("备份耗时:{},{}", (System.currentTimeMillis() - begin), "SmsUserSignstore");
         } catch (Exception e) {
             e.printStackTrace();

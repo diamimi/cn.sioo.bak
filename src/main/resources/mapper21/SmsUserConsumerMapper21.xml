@@ -5,5 +5,13 @@
 
 <mapper namespace="cn.sioo.mapper21.SmsUserConsumeMapper21">
 
+    <select id="selectConsumeCount21" parameterType="SmsUserConsume" resultType="java.lang.Integer">
+        SELECT count(0) from sms_user_consume where date &lt; #{date} ORDER BY id
+    </select>
+
+
+    <select id="selectLConsumeistLimit"  resultType="SmsUserConsume"  parameterType="SmsUserConsume">
+        SELECT * from sms_user_consume where date &lt; #{date} ORDER BY id limit #{pageIndex},#{pageSize}
+    </select>
 
 </mapper>

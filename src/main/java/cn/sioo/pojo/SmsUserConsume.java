@@ -1,5 +1,7 @@
 package cn.sioo.pojo;
 
+import java.util.Objects;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
@@ -64,5 +66,23 @@ public class SmsUserConsume extends BaseEntity {
 
     public void setUtype(Integer utype) {
         this.utype = utype;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SmsUserConsume that = (SmsUserConsume) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(uid, that.uid) &&
+                Objects.equals(send, that.send) &&
+                Objects.equals(unsend, that.unsend) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(utype, that.utype);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, uid, send, unsend, date, utype);
     }
 }

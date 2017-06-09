@@ -17,4 +17,7 @@ public interface BaseMapper31<T> extends Mapper<T> {
 
     @DeleteProvider(type = BaseMapper31Provider.class, method = "dynamicSQL")
     void delByIds(@Param("list") List<Integer> ids);
+
+    @DeleteProvider(type = BaseMapper31Provider.class, method = "dynamicSQL")
+    void delByUids(@Param("list") List<Integer> ids);
 }
