@@ -1,6 +1,7 @@
 package cn.sioo.pojo;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Created by morrigan on 2017/6/2.
@@ -84,5 +85,25 @@ public class SmsReleaseTemplate extends  BaseEntity {
 
     public void setAid(String aid) {
         this.aid = aid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SmsReleaseTemplate that = (SmsReleaseTemplate) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(uid, that.uid) &&
+                Objects.equals(content, that.content) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(effectivetime, that.effectivetime) &&
+                Objects.equals(stat, that.stat) &&
+                Objects.equals(addtime, that.addtime) &&
+                Objects.equals(aid, that.aid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, uid, content, type, effectivetime, stat, addtime, aid);
     }
 }

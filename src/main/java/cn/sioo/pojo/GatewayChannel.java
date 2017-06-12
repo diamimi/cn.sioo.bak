@@ -1,5 +1,7 @@
 package cn.sioo.pojo;
 
+import java.util.Objects;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
@@ -355,5 +357,56 @@ public class GatewayChannel extends BaseEntity {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GatewayChannel that = (GatewayChannel) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(gatewayTemplate, that.gatewayTemplate) &&
+                Objects.equals(gatewayPort, that.gatewayPort) &&
+                Objects.equals(gatewayIp, that.gatewayIp) &&
+                Objects.equals(gatewayCorpid, that.gatewayCorpid) &&
+                Objects.equals(gatewayAccount, that.gatewayAccount) &&
+                Objects.equals(gatewayPass, that.gatewayPass) &&
+                Objects.equals(gatewayNomber, that.gatewayNomber) &&
+                Objects.equals(gatewayServiceid, that.gatewayServiceid) &&
+                Objects.equals(gatewayMsgformat, that.gatewayMsgformat) &&
+                Objects.equals(gatewayNodeid, that.gatewayNodeid) &&
+                Objects.equals(gatewayUrl, that.gatewayUrl) &&
+                Objects.equals(gatewayParameter, that.gatewayParameter) &&
+                Objects.equals(localPort, that.localPort) &&
+                Objects.equals(localIp, that.localIp) &&
+                Objects.equals(localExpidLen, that.localExpidLen) &&
+                Objects.equals(localDelay, that.localDelay) &&
+                Objects.equals(localReadNum, that.localReadNum) &&
+                Objects.equals(localRate, that.localRate) &&
+                Objects.equals(rabbitPort, that.rabbitPort) &&
+                Objects.equals(rabbitIp, that.rabbitIp) &&
+                Objects.equals(rabbitAccount, that.rabbitAccount) &&
+                Objects.equals(rabbitPass, that.rabbitPass) &&
+                Objects.equals(channelName, that.channelName) &&
+                Objects.equals(channelProvider, that.channelProvider) &&
+                Objects.equals(supportNetwork, that.supportNetwork) &&
+                Objects.equals(sendWordsLen, that.sendWordsLen) &&
+                Objects.equals(sendWordsMaxlen, that.sendWordsMaxlen) &&
+                Objects.equals(recordType, that.recordType) &&
+                Objects.equals(routeType, that.routeType) &&
+                Objects.equals(routeRequire, that.routeRequire) &&
+                Objects.equals(routeChannel, that.routeChannel) &&
+                Objects.equals(signPosition, that.signPosition) &&
+                Objects.equals(isSigns, that.isSigns) &&
+                Objects.equals(isGroup, that.isGroup) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(standard, that.standard) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(remark, that.remark);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, gatewayTemplate, gatewayPort, gatewayIp, gatewayCorpid, gatewayAccount, gatewayPass, gatewayNomber, gatewayServiceid, gatewayMsgformat, gatewayNodeid, gatewayUrl, gatewayParameter, localPort, localIp, localExpidLen, localDelay, localReadNum, localRate, rabbitPort, rabbitIp, rabbitAccount, rabbitPass, channelName, channelProvider, supportNetwork, sendWordsLen, sendWordsMaxlen, recordType, routeType, routeRequire, routeChannel, signPosition, isSigns, isGroup, status, standard, price, remark);
     }
 }

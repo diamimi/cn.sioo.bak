@@ -1,6 +1,7 @@
 package cn.sioo.pojo;
 
 import javax.persistence.Column;
+import java.util.Objects;
 
 /**
  * Created by morrigan on 2017/6/2.
@@ -79,5 +80,25 @@ public class SmsUserDayCount extends BaseEntity {
 
     public void setIsReturn(Integer isReturn) {
         this.isReturn = isReturn;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SmsUserDayCount that = (SmsUserDayCount) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(uid, that.uid) &&
+                Objects.equals(total, that.total) &&
+                Objects.equals(fail, that.fail) &&
+                Objects.equals(arriveSucc, that.arriveSucc) &&
+                Objects.equals(arriveFail, that.arriveFail) &&
+                Objects.equals(time, that.time) &&
+                Objects.equals(isReturn, that.isReturn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, uid, total, fail, arriveSucc, arriveFail, time, isReturn);
     }
 }

@@ -41,7 +41,7 @@ public class SmsUserSignstoreThread implements Runnable {
     }
 
     public List<Integer> getDiffrentDel(List<SmsUserSignstore> list21, List<SmsUserSignstore> list31) {
-        if(list31.size()-list21.size()>=1&&list31.size()-list21.size()<=5){
+        if(list31.size()-list21.size()>=1&&list31.size()-list21.size()<=20){
             List<Integer> diff = new ArrayList<>();
             Map<Integer, SmsUserSignstore> map = new HashMap<>();
             for (SmsUserSignstore smsUserSignstore : list21) {
@@ -87,11 +87,12 @@ public class SmsUserSignstoreThread implements Runnable {
                 } else {
                     smsUserSignstoreService.insertList(diffrentAdd);
                 }
-                List<Integer> diffrentDel = getDiffrentDel(list21, list31);
-                if(diffrentDel!=null&&diffrentDel.size()>0){
-                    smsUserSignstoreService.delByIds(diffrentDel);
-                    LOGGER.info("SmsUserSignstore,减去数量:{}", diffrentDel.size());
-                }
+
+            }
+            List<Integer> diffrentDel = getDiffrentDel(list21, list31);
+            if(diffrentDel!=null&&diffrentDel.size()>0){
+                smsUserSignstoreService.delByIds(diffrentDel);
+                LOGGER.info("SmsUserSignstore,减去数量:{}", diffrentDel.size());
             }
         } catch (Exception e) {
             e.printStackTrace();

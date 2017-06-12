@@ -1,6 +1,7 @@
 package cn.sioo.pojo;
 
 import javax.persistence.Column;
+import java.util.Objects;
 
 /**
  * Created by morrigan on 2017/6/2.
@@ -154,5 +155,30 @@ public class SmsUserSignstore extends BaseEntity {
 
     public void setUserexpend(String userexpend) {
         this.userexpend = userexpend;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SmsUserSignstore that = (SmsUserSignstore) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(uid, that.uid) &&
+                Objects.equals(store, that.store) &&
+                Objects.equals(expend, that.expend) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(userstat, that.userstat) &&
+                Objects.equals(signtime, that.signtime) &&
+                Objects.equals(addtime, that.addtime) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(channel, that.channel) &&
+                Objects.equals(expendqd, that.expendqd) &&
+                Objects.equals(expend2, that.expend2) &&
+                Objects.equals(userexpend, that.userexpend);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, uid, store, expend, status, userstat, signtime, addtime, type, channel, expendqd, expend2, userexpend);
     }
 }

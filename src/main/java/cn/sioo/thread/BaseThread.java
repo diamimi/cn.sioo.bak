@@ -30,7 +30,6 @@ public  class BaseThread<T extends BaseEntity> implements Runnable {
     @Override
     public void run() {
         try {
-            long begin = System.currentTimeMillis();
             int count31 = baseService.selectCount31(null);
             int count21 = baseService.selectCount21(null);
             int size = 3000;
@@ -39,12 +38,13 @@ public  class BaseThread<T extends BaseEntity> implements Runnable {
                 List<T> list = baseService.selectListLimit(t, count31, size);
                 if (list.size() > 0) {
                     baseService.insertList(list);
+                    LOGGER.info("{} 备份,数量:{}", t.getClass().getName(), list.size());
                 } else {
                     break;
                 }
                 count31 = count31 + size;
             }
-            LOGGER.info("{} 备份,耗时:{}", t.getClass().getName(), (System.currentTimeMillis() - begin));
+
         } catch (Exception e) {
             e.printStackTrace();
         }

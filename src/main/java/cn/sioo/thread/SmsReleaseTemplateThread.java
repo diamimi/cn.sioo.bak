@@ -86,11 +86,11 @@ public class SmsReleaseTemplateThread implements Runnable {
                 } else {
                     smsReleaseTemplateService.insertList(diffrentAdd);
                 }
-                List<Integer> diffrentDel = getDiffrentDel(list21, list31);
-                if(diffrentDel!=null&&diffrentDel.size()>0){
-                    smsReleaseTemplateService.delByIds(diffrentDel);
-                    LOGGER.info("SmsReleaseTemplate,减去数量:{}", diffrentDel.size());
-                }
+            }
+            List<Integer> diffrentDel = getDiffrentDel(list21, list31);
+            if(diffrentDel!=null&&diffrentDel.size()>0){
+                smsReleaseTemplateService.delByIds(diffrentDel);
+                LOGGER.info("SmsReleaseTemplate,减去数量:{}", diffrentDel.size());
             }
         } catch (Exception e) {
             e.printStackTrace();
