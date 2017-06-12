@@ -40,8 +40,6 @@ public class SmsUserControlThread implements Runnable {
     }
 
 
-
-
     @Override
     public void run() {
         try {
@@ -50,7 +48,7 @@ public class SmsUserControlThread implements Runnable {
             List<SmsUserControl> list31 = smsUserControlService.selectList31(null);
             List<SmsUserControl> diffrentAdd = getDiffrentAdd(list21, list31);
             if (diffrentAdd.size() > 0) {
-                LOGGER.info("更新SmsUser,数量:{}",diffrentAdd.size());
+                LOGGER.info("更新SmsUserControl,数量:{}",diffrentAdd.size());
                 List<Integer> uids=new ArrayList<>();
                 for (SmsUserControl smsUserControl : diffrentAdd) {
                     uids.add(smsUserControl.getUid());
@@ -72,7 +70,6 @@ public class SmsUserControlThread implements Runnable {
                 }
             }
 
-            LOGGER.info("备份耗时:{},{}", (System.currentTimeMillis() - begin), "SmsUserSignstore");
         } catch (Exception e) {
             e.printStackTrace();
         }

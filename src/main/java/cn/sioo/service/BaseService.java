@@ -89,5 +89,9 @@ public abstract class BaseService<T extends BaseEntity> {
         baseMapper31.delByUids(uids);
     }
 
+    public void delete(T t){
+        baseMapper31.delete(t);
+    }
+
 
 }

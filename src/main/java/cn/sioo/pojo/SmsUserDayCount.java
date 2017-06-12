@@ -1,5 +1,7 @@
 package cn.sioo.pojo;
 
+import javax.persistence.Column;
+
 /**
  * Created by morrigan on 2017/6/2.
  */
@@ -12,6 +14,7 @@ public class SmsUserDayCount extends BaseEntity {
     private Integer arriveSucc;
     private Integer arriveFail;
     private Integer time;
+    @Column(name="isReturn")
     private Integer isReturn;
 
     public Integer getId() {

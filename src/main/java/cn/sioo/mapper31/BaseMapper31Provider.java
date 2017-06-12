@@ -64,4 +64,15 @@ public class BaseMapper31Provider extends MapperTemplate {
         sql.append("</foreach>");
         return sql.toString();
     }
+
+    public String delByChannelIds(MappedStatement ms) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class<?> entityClass = this.getEntityClass(ms);
+        StringBuilder sql = new StringBuilder();
+        sql.append(SqlHelper.deleteFromTable(entityClass, this.tableName(entityClass)));
+        sql.append(" WHERE create_time=#{createTime} and  channelId in");
+        sql.append(" <foreach item=\"list\" collection=\"list\" open=\"(\" separator=\",\" close=\")\">");
+        sql.append("#{list}");
+        sql.append("</foreach>");
+        return sql.toString();
+    }
 }

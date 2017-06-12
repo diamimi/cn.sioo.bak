@@ -1,8 +1,5 @@
-import cn.sioo.pojo.SmsUserConsume;
-import cn.sioo.service.SmsUserConsumeService;
-import cn.sioo.service.SmsUserControlService;
-import cn.sioo.service.SmsUserService;
-import cn.sioo.service.SmsUserSignstoreService;
+import cn.sioo.pojo.ChannelDayCount;
+import cn.sioo.service.*;
 import cn.sioo.util.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by morrigan on 2017/6/5.
@@ -31,17 +31,34 @@ public class SpringTest {
     @Autowired
     private SmsUserSignstoreService smsUserSignstoreService;
 
+    @Autowired
+    private ChannelDayCountService channelDayCountService;
+
+    public List<ChannelDayCount> getDiffrentAdd(List<ChannelDayCount> list21, List<ChannelDayCount> list31) {
+        List<ChannelDayCount> diff = new ArrayList<>();
+        Map<String, ChannelDayCount> map = new HashMap<>();
+        for (ChannelDayCount channelDayCount : list31) {
+            map.put(channelDayCount.getChannelId()+","+channelDayCount.getCreateTime(), channelDayCount);
+        }
+        for (ChannelDayCount channelDayCount : list21) {
+            if (!(map.get(channelDayCount.getChannelId()+","+channelDayCount.getCreateTime()) != null
+                    &&map.get(channelDayCount.getChannelId()+","+channelDayCount.getCreateTime()).equals(channelDayCount))) {
+                diff.add(channelDayCount);
+            }
+        }
+        return diff;
+    }
 
 
     @Test
     public void test1() {
-       int date= DateUtils.getDay()-1;
-       SmsUserConsume smsUserConsume=new SmsUserConsume();
-       smsUserConsume.setDate(date);
-       smsUserConsume.setPageIndex(0);
-       smsUserConsume.setPageSize(1000);
-        List<SmsUserConsume> list= smsUserConsumeService.selectLConsumeistLimit(smsUserConsume);
-        System.out.println(list.size());
+        int time = DateUtils.getDay();
+        ChannelDayCount channelDayCount = new ChannelDayCount();
+        channelDayCount.setCreateTime(time-8);
+        List<ChannelDayCount> list21 = channelDayCountService.selectList21(channelDayCount);
+        List<ChannelDayCount> list31 = channelDayCountService.selectList31(channelDayCount);
+        List<ChannelDayCount> diffrentAdd = getDiffrentAdd(list21, list31);
+        System.out.println(diffrentAdd.size());
 
     }
 

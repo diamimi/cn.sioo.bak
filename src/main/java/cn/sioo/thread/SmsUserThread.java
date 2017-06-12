@@ -70,38 +70,10 @@ public class SmsUserThread implements Runnable {
                     smsUserService.insertList(diffrentAdd);
                 }
             }
-            LOGGER.info("{} 备份耗时,{}", "SmsUser",(System.currentTimeMillis() - begin));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-/*
-    @Override
-    public void run() {
-        try {
-            long begin = System.currentTimeMillis();
-            List<SmsUser> list21 = smsUserService.selectList21(null);
-            smsUserService.delete();
-            if (list21.size() > 0) {
-                if (list21.size() > 3000) {
-                    int limitSize = 3000;
-                    int part = list21.size() / limitSize;
-                    for (int i = 0; i < part; i++) {
-                        List<SmsUser> subList = list21.subList(0, limitSize);
-                        smsUserService.insertList(subList);
-                        list21.subList(0, limitSize).clear();
-                    }
-                    if (!list21.isEmpty()) {
-                        smsUserService.insertList(list21);
-                    }
-                } else {
-                    smsUserService.insertList(list21);
-                }
-            }
-            LOGGER.info("备份耗时:{},{}", (System.currentTimeMillis() - begin), "SmsUser");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
+
 }

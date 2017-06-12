@@ -51,7 +51,6 @@ public class SmsUserSignstoreDelThread implements Runnable {
             if (diffrentDel.size() > 0) {
                 smsUserSignstoreService.delByIds(diffrentDel);
             }
-            LOGGER.info("备份耗时:{},{}", (System.currentTimeMillis() - begin), "SmsUserSignstore 删除");
         } catch (Exception e) {
             e.printStackTrace();
         }

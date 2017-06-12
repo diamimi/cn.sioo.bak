@@ -5,6 +5,7 @@ import cn.sioo.mapper31.SmsUserConsumeMapper31;
 import cn.sioo.pojo.SmsUserConsume;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -34,4 +35,16 @@ public class SmsUserConsumeService extends BaseService<SmsUserConsume> {
     }
 
 
+    public List<SmsUserConsume> selectGreateDate21(SmsUserConsume smsUserConsume) {
+        Example example=new Example(smsUserConsume.getClass());
+        example.createCriteria().andGreaterThan("date",smsUserConsume.getDate());
+
+       return  smsUserConsumeMapper21.selectByExample(example);
+    }
+
+    public List<SmsUserConsume> selectGreateDate31(SmsUserConsume smsUserConsume) {
+        Example example=new Example(smsUserConsume.getClass());
+        example.createCriteria().andGreaterThan("date",smsUserConsume.getDate());
+        return  smsUserConsumeMapper31.selectByExample(example);
+    }
 }

@@ -1,6 +1,7 @@
 package cn.sioo.pojo;
 
 import javax.persistence.Column;
+import java.util.Objects;
 
 /**
  * Created by morrigan on 2017/6/2.
@@ -88,5 +89,25 @@ public class ChannelDayCount extends BaseEntity {
 
     public void setChannelId(Integer channelId) {
         this.channelId = channelId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChannelDayCount that = (ChannelDayCount) o;
+        return  Objects.equals(submitCount, that.submitCount) &&
+                Objects.equals(submitSucc, that.submitSucc) &&
+                Objects.equals(submitFail, that.submitFail) &&
+                Objects.equals(reportCount, that.reportCount) &&
+                Objects.equals(reportSucc, that.reportSucc) &&
+                Objects.equals(reportFail, that.reportFail) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(channelId, that.channelId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(submitCount, submitSucc, submitFail, reportCount, reportSucc, reportFail, createTime, channelId);
     }
 }
