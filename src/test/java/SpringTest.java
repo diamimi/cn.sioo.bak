@@ -1,22 +1,20 @@
-import cn.sioo.pojo.ChannelDayCount;
+import cn.sioo.pojo.SmsSendHistoryBackups;
 import cn.sioo.service.*;
-import cn.sioo.util.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by morrigan on 2017/6/5.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/bak.xml", "classpath:spring/mybatis21.xml", "classpath:spring/mybatis31.xml"})
+@ContextConfiguration(locations = {"classpath:spring/bak.xml", "classpath:spring/mybatis21.xml", "classpath:spring/mybatis31.xml",
+        "classpath:spring/mybatis35.xml"})
 public class SpringTest {
 
     @Autowired
@@ -32,38 +30,35 @@ public class SpringTest {
     private SmsUserSignstoreService smsUserSignstoreService;
 
     @Autowired
-    private ChannelDayCountService channelDayCountService;
+    private SmsSendHistoryBackupsService smsSendHistoryBackupsService;
 
-    public List<ChannelDayCount> getDiffrentAdd(List<ChannelDayCount> list21, List<ChannelDayCount> list31) {
-        List<ChannelDayCount> diff = new ArrayList<>();
-        Map<String, ChannelDayCount> map = new HashMap<>();
-        for (ChannelDayCount channelDayCount : list31) {
-            map.put(channelDayCount.getChannelId()+","+channelDayCount.getCreateTime(), channelDayCount);
-        }
-        for (ChannelDayCount channelDayCount : list21) {
-            if (!(map.get(channelDayCount.getChannelId()+","+channelDayCount.getCreateTime()) != null
-                    &&map.get(channelDayCount.getChannelId()+","+channelDayCount.getCreateTime()).equals(channelDayCount))) {
-                diff.add(channelDayCount);
-            }
-        }
-        return diff;
-    }
+    @Autowired
+    private SmsUserHistoryService smsUserHistoryService;
 
 
     @Test
-    public void test1() {
-        int time = DateUtils.getDay();
-        ChannelDayCount channelDayCount = new ChannelDayCount();
-        channelDayCount.setCreateTime(time-8);
-        List<ChannelDayCount> list21 = channelDayCountService.selectList21(channelDayCount);
-        List<ChannelDayCount> list31 = channelDayCountService.selectList31(channelDayCount);
-        List<ChannelDayCount> diffrentAdd = getDiffrentAdd(list21, list31);
-        System.out.println(diffrentAdd.size());
+    public void test1() throws Exception{
+        SmsSendHistoryBackups start = new SmsSendHistoryBackups();
+        start.setSenddate(new BigInteger("20170101000000"));
+        SmsSendHistoryBackups end = new SmsSendHistoryBackups();
+        end.setSenddate(new BigInteger("20170101010000"));
+        List<SmsSendHistoryBackups> smsSendHistoryBackups = smsSendHistoryBackupsService.selectSenddateBetween(start, end);
+        for (SmsSendHistoryBackups smsSendHistoryBackup : smsSendHistoryBackups) {
+            //SmsUserHistory smsUserHistory=new SmsUserHistory();
+           // smsUserHistory.setHisid(smsSendHistoryBackup.getId().intValue());
+           // int uid = smsUserHistoryService.findUid(smsSendHistoryBackup.getId());
+            int uid = smsUserHistoryService.findId();
+            //Integer uid = smsUserHistoryService.findUid1(smsUserHistory).get(0).getUid();
+            System.out.println(uid);
+        }
 
     }
 
-
-
+    @Test
+    public void test2(){
+        int i = smsUserSignstoreService.selectCount31(null);
+        System.out.println(i);
+    }
 
 
 }

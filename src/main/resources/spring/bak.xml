@@ -39,11 +39,19 @@
         <property name="dataSource" ref="dataSource31"/>
     </bean>
 
+    <bean id="transactionManager35"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource35"/>
+    </bean>
+
 
     <!-- 启用注解事务声明 -->
     <tx:annotation-driven transaction-manager="transactionManager21"/>
 
     <tx:annotation-driven transaction-manager="transactionManager31"/>
+
+
+    <tx:annotation-driven transaction-manager="transactionManager35"/>
 
     <!-- 编程式事物 -->
     <bean id="defaultTransactionDefinition"
@@ -75,6 +83,28 @@
         <property value="${jdbc31.url}" name="url"/>
         <property value="${jdbc31.username}" name="username"/>
         <property value="${jdbc31.password}" name="password"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property value="1" name="initialSize"/>
+        <property value="1" name="minIdle"/>
+        <property value="500" name="maxActive"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property value="60000" name="maxWait"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property value="60000" name="timeBetweenEvictionRunsMillis"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property value="300000" name="minEvictableIdleTimeMillis"/>
+        <property value="SELECT 'x'" name="validationQuery"/>
+        <property value="true" name="testWhileIdle"/>
+        <property value="false" name="testOnBorrow"/>
+        <property value="false" name="testOnReturn"/>
+        <property name="filters" value="stat"/>
+    </bean>
+
+
+    <bean destroy-method="close" init-method="init" class="com.alibaba.druid.pool.DruidDataSource" id="dataSource35">
+        <property value="${jdbc35.url}" name="url"/>
+        <property value="${jdbc35.username}" name="username"/>
+        <property value="${jdbc35.password}" name="password"/>
         <!-- 配置初始化大小、最小、最大 -->
         <property value="1" name="initialSize"/>
         <property value="1" name="minIdle"/>

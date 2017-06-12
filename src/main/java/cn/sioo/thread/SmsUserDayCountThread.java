@@ -52,7 +52,7 @@ public class SmsUserDayCountThread implements Runnable {
             List<SmsUserDayCount> list31 = smsUserDayCountService.selectGreateTime31(smsUserDayCount);
             List<SmsUserDayCount> diffrentAdd = getDiffrentAdd(list21, list31);
             if (diffrentAdd.size() > 0) {
-                LOGGER.info("更新SmsUser,数量:{}",diffrentAdd.size());
+                LOGGER.info("更新SmsUserDayCount,数量:{}",diffrentAdd.size());
                 List<Integer> ids=new ArrayList<>();
                 for (SmsUserDayCount userDayCount : diffrentAdd) {
                     ids.add(userDayCount.getId());
