@@ -38,7 +38,6 @@ public class SmsUserConsumeService extends BaseService<SmsUserConsume> {
     public List<SmsUserConsume> selectGreateDate21(SmsUserConsume smsUserConsume) {
         Example example=new Example(smsUserConsume.getClass());
         example.createCriteria().andGreaterThan("date",smsUserConsume.getDate());
-
        return  smsUserConsumeMapper21.selectByExample(example);
     }
 

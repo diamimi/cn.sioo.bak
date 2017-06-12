@@ -43,7 +43,6 @@ public class SmsUserControlThread implements Runnable {
     @Override
     public void run() {
         try {
-            long begin = System.currentTimeMillis();
             List<SmsUserControl> list21 = smsUserControlService.selectList21(null);
             List<SmsUserControl> list31 = smsUserControlService.selectList31(null);
             List<SmsUserControl> diffrentAdd = getDiffrentAdd(list21, list31);

@@ -1,7 +1,8 @@
 package cn.sioo.bak;
 
+import cn.sioo.pojo.SmsAccount;
 import cn.sioo.service.*;
-import cn.sioo.thread.ChannelDayCountThread;
+import cn.sioo.thread.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,23 +29,18 @@ public class BakMain {
         SmsUserSignstoreService smsUserSignstoreService = ac.getBean(SmsUserSignstoreService.class);
         SmsUserDayCountService smsUserDayCountService = ac.getBean(SmsUserDayCountService.class);
 
-
         ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
 
 
-      // service.scheduleAtFixedRate(new BaseThread(channelDayCountService, new ChannelDayCount()), 1, 60, TimeUnit.SECONDS);
-//        service.scheduleAtFixedRate(new BaseThread(gatewayChannelService, new GatewayChannel()), 1, 60, TimeUnit.SECONDS);
-//        service.scheduleAtFixedRate(new BaseThread(smsAccountService, new SmsAccount()), 1, 60, TimeUnit.SECONDS);
-//        service.scheduleAtFixedRate(new BaseThread(smsReleaseTemplateService, new SmsReleaseTemplate()), 1, 60, TimeUnit.SECONDS);
-//        service.scheduleAtFixedRate(new BaseThread(smsUserService, new SmsUser()), 1, 60, TimeUnit.SECONDS);
-//        service.scheduleAtFixedRate(new BaseThread(smsUserControlService, new SmsUserControl()), 1, 60, TimeUnit.SECONDS);
-//        service.scheduleAtFixedRate(new BaseThread(smsUserDayCountService, new SmsUserDayCount()), 1, 90, TimeUnit.SECONDS);
-//        service.scheduleAtFixedRate(new BaseThread(smsUserSignstoreService, new SmsUserSignstore()), 1, 60, TimeUnit.SECONDS);
-
-        //service.scheduleAtFixedRate(new SmsUserConsumeThread(smsUserConsumeService), 1, 60, TimeUnit.SECONDS);
         service.scheduleAtFixedRate(new ChannelDayCountThread(channelDayCountService), 1, 60, TimeUnit.SECONDS);
-
-
+        service.scheduleAtFixedRate(new SmsUserConsumeThread(smsUserConsumeService), 1, 60, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new SmsUserDayCountThread(smsUserDayCountService), 1, 60, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new SmsUserControlThread(smsUserControlService), 1, 60, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new SmsUserThread(smsUserService), 1, 60, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new GatewayChannelThread(gatewayChannelService), 1, 60, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new BaseThread(smsAccountService, new SmsAccount()), 1, 60, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new SmsReleaseTemplateThread(smsReleaseTemplateService), 1, 60, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(new SmsUserSignstoreThread(smsUserSignstoreService), 1, 60, TimeUnit.SECONDS);
 
 
     }

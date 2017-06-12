@@ -31,7 +31,6 @@ public  class BaseThread<T extends BaseEntity> implements Runnable {
     public void run() {
         try {
             long begin = System.currentTimeMillis();
-            baseService.delete(null);
             int count31 = baseService.selectCount31(null);
             int count21 = baseService.selectCount21(null);
             int size = 3000;
